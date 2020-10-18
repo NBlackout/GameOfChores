@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoFixture.Xunit2" Version="4.14.0" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="xunit" Version="2.4.0" />
@@ -15,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NBlackout.GameOfChores.Application\NBlackout.GameOfChores.Application.csproj" />
+    <ProjectReference Include="..\GameOfChores.Domain\GameOfChores.Domain.csproj" />
   </ItemGroup>
 
 </Project>
