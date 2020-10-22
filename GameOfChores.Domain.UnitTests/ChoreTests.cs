@@ -7,15 +7,6 @@ namespace GameOfChores.Domain.UnitTests
 {
     public class ChoreTests
     {
-        [Fact]
-        public void NoLabel_GivesError()
-        {
-            Action nullLabelAction = () => Act(null);
-
-            nullLabelAction.Should().ThrowExactly<ArgumentNullException>()
-                .And.ParamName.Should().BeEquivalentTo("Label");
-        }
-
         [Theory]
         [InlineData("")]
         [InlineData("\t ")]
@@ -29,11 +20,11 @@ namespace GameOfChores.Domain.UnitTests
         [Theory, AutoData]
         public void ValidLabel_SetsBackingMember(string label)
         {
-            Chore chore = Act(label);
+            ChoreType choreType = Act(label);
 
-            chore.Label.Should().Be(label);
+            choreType.Label.Should().Be(label);
         }
 
-        private static Chore Act(string label) => new Chore(label);
+        private static ChoreType Act(string label) => new ChoreType(label);
     }
 }

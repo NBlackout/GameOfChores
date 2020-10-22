@@ -2,6 +2,6 @@ namespace GameOfChores.Application.UseCases.GetPendingChores
 {
     public class GetPendingChoresResult
     {
-        public string Label { get; set; }
+        public string Label { get; set; } = null!;
     }
 }

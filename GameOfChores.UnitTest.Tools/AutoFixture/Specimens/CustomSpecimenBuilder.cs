@@ -10,9 +10,18 @@ namespace GameOfChores.UnitTest.Tools.AutoFixture.Specimens
             if (!CanCreate())
                 return new NoSpecimen();
 
-            return CreateSpecimen(request, context);
+            T specimen = CreateSpecimen(request, context);
+            return SpecimenOrDefault();
 
             bool CanCreate() => request as Type == typeof(T);
+
+            object SpecimenOrDefault()
+            {
+                if (specimen == null)
+                    return new NoSpecimen();
+
+                return specimen;
+            }
         }
 
         protected abstract T CreateSpecimen(object request, ISpecimenContext context);
