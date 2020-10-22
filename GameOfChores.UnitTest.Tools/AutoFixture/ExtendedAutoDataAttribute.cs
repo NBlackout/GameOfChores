@@ -18,6 +18,7 @@ namespace GameOfChores.UnitTest.Tools.AutoFixture
             public void Customize(IFixture fixture)
             {
                 fixture.Customizations.Add(new ChoreBuilder());
+                fixture.Customizations.Add(new ChoreTypeBuilder());
             }
         }
     }
