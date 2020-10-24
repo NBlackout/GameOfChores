@@ -1,13 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Nullable>enable</Nullable>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-
     <IsPackable>false</IsPackable>
+    <Nullable>enable</Nullable>
+    <ProjectGuid>F77C0F9A-08F5-401E-8489-D7C63643E210</ProjectGuid>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="AutoFixture.Xunit2" Version="4.14.0" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
@@ -24,12 +22,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\GameOfChores.Application\GameOfChores.Application.csproj" />
     <ProjectReference Include="..\GameOfChores.Data\GameOfChores.Data.csproj" />
     <ProjectReference Include="..\GameOfChores.Domain\GameOfChores.Domain.csproj" />
     <ProjectReference Include="..\GameOfChores.UnitTest.Tools\GameOfChores.UnitTest.Tools.csproj" />
   </ItemGroup>
-
 </Project>

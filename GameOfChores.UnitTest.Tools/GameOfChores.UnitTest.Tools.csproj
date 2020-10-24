@@ -1,18 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
+    <ProjectGuid>1F37F4FC-8D53-4839-9528-20785FE2209E</ProjectGuid>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.14.0" />
     <PackageReference Include="AutoFixture.Xunit2" Version="4.14.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\GameOfChores.Domain\GameOfChores.Domain.csproj" />
   </ItemGroup>
-
 </Project>

@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
+    <ProjectGuid>C64F1016-797D-498D-8D38-099C47B833AA</ProjectGuid>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
