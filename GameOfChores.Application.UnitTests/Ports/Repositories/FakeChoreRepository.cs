@@ -6,11 +6,11 @@ using GameOfChores.Domain;
 
 namespace GameOfChores.Application.UnitTests.Ports.Repositories
 {
-    public class ChoreRepository : IChoreRepository
+    public class FakeChoreRepository : IChoreRepository
     {
         private readonly List<Chore> chores;
 
-        public ChoreRepository()
+        public FakeChoreRepository()
         {
             chores = new List<Chore>();
         }

@@ -5,11 +5,11 @@ using GameOfChores.Domain;
 
 namespace GameOfChores.Application.UseCases.AddChoreType
 {
-    public class AddChoreTypeUseCase
+    public class AddChoreType : IAddChoreType
     {
         private readonly IChoreTypeRepository choreTypeRepository;
 
-        public AddChoreTypeUseCase(IChoreTypeRepository choreTypeRepository)
+        public AddChoreType(IChoreTypeRepository choreTypeRepository)
         {
             this.choreTypeRepository = choreTypeRepository;
         }

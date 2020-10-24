@@ -13,13 +13,13 @@ namespace GameOfChores.Application.UnitTests.UseCases
 {
     public class GetPendingChoresTests
     {
-        private readonly ChoreRepository choreRepository;
-        private readonly GetPendingChoresUseCase useCase;
+        private readonly FakeChoreRepository choreRepository;
+        private readonly GetPendingChores getPendingChores;
 
         public GetPendingChoresTests()
         {
-            choreRepository = new ChoreRepository();
-            useCase = new GetPendingChoresUseCase(choreRepository);
+            choreRepository = new FakeChoreRepository();
+            getPendingChores = new GetPendingChores(choreRepository);
         }
 
         [Fact]
@@ -42,6 +42,6 @@ namespace GameOfChores.Application.UnitTests.UseCases
             results.Should().BeEquivalentTo(expectedChores);
         }
 
-        private Task<IEnumerable<GetPendingChoresResult>> ActAsync() => useCase.ExecuteAsync();
+        private Task<IEnumerable<GetPendingChoresResult>> ActAsync() => getPendingChores.ExecuteAsync();
     }
 }

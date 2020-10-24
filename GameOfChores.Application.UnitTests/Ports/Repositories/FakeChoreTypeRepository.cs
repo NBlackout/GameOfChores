@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using GameOfChores.Application.Ports.Repositories;
 using GameOfChores.Domain;
 
-namespace GameOfChores.Application.UnitTests.UseCases
+namespace GameOfChores.Application.UnitTests.Ports.Repositories
 {
     public class FakeChoreTypeRepository : IChoreTypeRepository
     {
@@ -18,7 +18,5 @@ namespace GameOfChores.Application.UnitTests.UseCases
         public void Add(ChoreType choreType) => choresTypes.Add(choreType);
 
         public Task<bool> ExistsAsync(string label) => Task.FromResult(choresTypes.Any(c => c.Label == label));
-
-        public Task<IEnumerable<ChoreType>> GetAllAsync() => Task.FromResult(choresTypes.AsEnumerable());
     }
 }

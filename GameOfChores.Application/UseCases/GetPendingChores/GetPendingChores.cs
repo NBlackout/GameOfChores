@@ -6,11 +6,11 @@ using GameOfChores.Domain;
 
 namespace GameOfChores.Application.UseCases.GetPendingChores
 {
-    public class GetPendingChoresUseCase
+    public class GetPendingChores
     {
         private readonly IChoreRepository choreRepository;
 
-        public GetPendingChoresUseCase(IChoreRepository choreRepository)
+        public GetPendingChores(IChoreRepository choreRepository)
         {
             this.choreRepository = choreRepository;
         }
