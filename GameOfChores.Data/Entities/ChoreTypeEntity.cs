@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GameOfChores.Data.Entities
+﻿namespace GameOfChores.Data.Entities
 {
     public class ChoreTypeEntity
     {
