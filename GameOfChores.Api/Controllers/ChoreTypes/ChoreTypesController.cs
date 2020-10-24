@@ -18,6 +18,9 @@ namespace GameOfChores.Api.Controllers.ChoreTypes
         [HttpPost]
         public async Task<ActionResult> AddChoreTypeAsync(AddChoreTypeRequest request)
         {
+            if ( !ModelState.IsValid)
+                return BadRequest();
+
             var parameter = new AddChoreTypeParameter(request.Label);
             await addChoreType.ExecuteAsync(parameter);
 

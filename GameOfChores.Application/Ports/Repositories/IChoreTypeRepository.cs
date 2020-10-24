@@ -6,6 +6,6 @@ namespace GameOfChores.Application.Ports.Repositories
     public interface IChoreTypeRepository
     {
         void Add(ChoreType choreType);
-        Task<bool> ExistsAsync(string label);
+        Task<bool> ExistsAsync(ChoreType choreType);
     }
 }

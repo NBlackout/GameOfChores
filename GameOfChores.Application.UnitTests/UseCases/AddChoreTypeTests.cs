@@ -36,7 +36,7 @@ namespace GameOfChores.Application.UnitTests.UseCases
 
             await ActAsync(parameter);
 
-            bool exists = await choreTypeRepository.ExistsAsync(label);
+            bool exists = await choreTypeRepository.ExistsAsync(new ChoreType(label));
             exists.Should().BeTrue();
         }
 

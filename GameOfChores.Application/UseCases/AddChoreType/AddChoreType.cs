@@ -18,7 +18,7 @@ namespace GameOfChores.Application.UseCases.AddChoreType
         {
             var choreType = new ChoreType(parameter.Label);
 
-            bool exists = await choreTypeRepository.ExistsAsync(choreType.Label);
+            bool exists = await choreTypeRepository.ExistsAsync(choreType);
             if (exists)
                 throw new ChoreTypeLabelAlreadyExistsException();
 
