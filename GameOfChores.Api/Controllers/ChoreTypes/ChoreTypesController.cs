@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using GameOfChores.Application.UseCases.AddChoreType;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GamesOfChores.Api.Controllers.ChoreTypes
+namespace GameOfChores.Api.Controllers.ChoreTypes
 {
     [ApiController]
     [Route("api/[controller]")]

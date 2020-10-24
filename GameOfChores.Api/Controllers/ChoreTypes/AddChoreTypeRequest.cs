@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace GamesOfChores.Api.Controllers.ChoreTypes
+namespace GameOfChores.Api.Controllers.ChoreTypes
 {
     public class AddChoreTypeRequest
     {

@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameOfChores.Application", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameOfChores.UnitTest.Tools", "GameOfChores.UnitTest.Tools\GameOfChores.UnitTest.Tools.csproj", "{970E096B-94C0-44FC-B331-CF86FD8157D1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamesOfChores.Api", "GamesOfChores.Api\GamesOfChores.Api.csproj", "{6ACA5E53-DE18-4368-AEBE-1C6730CF30A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameOfChores.Api", "GameOfChores.Api\GameOfChores.Api.csproj", "{6ACA5E53-DE18-4368-AEBE-1C6730CF30A5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfChores.Api.UnitTests", "GameOfChores.Api.UnitTests\GameOfChores.Api.UnitTests.csproj", "{2AF0DDFB-2D79-451F-8B09-2168AC6B589A}"
 EndProject

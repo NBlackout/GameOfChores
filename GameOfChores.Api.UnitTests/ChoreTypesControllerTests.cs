@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
 using AutoFixture.Xunit2;
 using FluentAssertions;
+using GameOfChores.Api.Controllers.ChoreTypes;
 using GameOfChores.Application.UseCases.AddChoreType;
-using GamesOfChores.Api.Controllers.ChoreTypes;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;

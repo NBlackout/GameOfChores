@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace GamesOfChores.Api.Controllers
+namespace GameOfChores.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
