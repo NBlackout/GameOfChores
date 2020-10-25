@@ -6,7 +6,7 @@ using GameOfChores.UnitTest.Tools.AutoFixture;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
-namespace GameOfChores.Data.UnitTests.ChoreTypeRepositoryTests
+namespace GameOfChores.Data.UnitTests.Repositories.ChoreTypes
 {
     public class AddTests : InMemoryRepositoryTests<ChoreTypeRepository>
     {

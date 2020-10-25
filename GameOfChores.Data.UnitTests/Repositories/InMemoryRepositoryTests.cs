@@ -2,7 +2,7 @@
 using GameOfChores.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace GameOfChores.Data.UnitTests
+namespace GameOfChores.Data.UnitTests.Repositories
 {
     public abstract class InMemoryRepositoryTests<T> where T : DbContextRepository
     {

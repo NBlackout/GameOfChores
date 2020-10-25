@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GameOfChores.Application.UseCases.AddChoreType;
+using GameOfChores.Application.UseCases.GetChoreTypes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameOfChores.Api.Controllers.ChoreTypes
@@ -8,11 +10,21 @@ namespace GameOfChores.Api.Controllers.ChoreTypes
     [Route("api/[controller]")]
     public class ChoreTypesController : ControllerBase
     {
+        private readonly IGetChoreTypes getChoreTypes;
         private readonly IAddChoreType addChoreType;
 
-        public ChoreTypesController(IAddChoreType addChoreType)
+        public ChoreTypesController(IGetChoreTypes getChoreTypes, IAddChoreType addChoreType)
         {
+            this.getChoreTypes = getChoreTypes;
             this.addChoreType = addChoreType;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetChoreTypesAsync()
+        {
+            IEnumerable<GetChoreTypesResult> results = await getChoreTypes.ExecuteAsync();
+
+            return Ok(results);
         }
 
         [HttpPost]

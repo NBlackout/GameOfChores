@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Moq;
 using Xunit;
 
-namespace GameOfChores.Data.UnitTests.DbContextRepositoryTests
+namespace GameOfChores.Data.UnitTests.Repositories.DbContext
 {
     public class DisposeTests
     {

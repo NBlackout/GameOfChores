@@ -1,5 +1,6 @@
 using GameOfChores.Application.Ports.Repositories;
 using GameOfChores.Application.UseCases.AddChoreType;
+using GameOfChores.Application.UseCases.GetChoreTypes;
 using GameOfChores.Data;
 using GameOfChores.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -19,6 +20,7 @@ namespace GameOfChores.Api
 
             services.AddDbContext<GameOfChoresContext>(o => o.UseInMemoryDatabase("GameOfChores"));
             services.AddScoped<IChoreTypeRepository, ChoreTypeRepository>();
+            services.AddScoped<IGetChoreTypes, GetChoreTypes>();
             services.AddScoped<IAddChoreType, AddChoreType>();
         }
 

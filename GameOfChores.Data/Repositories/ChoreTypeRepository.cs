@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using GameOfChores.Application.Ports.Repositories;
 using GameOfChores.Data.Entities;
 using GameOfChores.Domain;
@@ -22,5 +24,7 @@ namespace GameOfChores.Data.Repositories
         }
 
         public Task<bool> ExistsAsync(ChoreType choreType) => Context.ChoreTypes.AnyAsync(ct => ct.Label == choreType.Label);
+
+        public async Task<IEnumerable<ChoreType>> GetAsync() => await Context.ChoreTypes.Select(ct => new ChoreType(ct.Label)).ToListAsync();
     }
 }

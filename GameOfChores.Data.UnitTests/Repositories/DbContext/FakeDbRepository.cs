@@ -1,6 +1,6 @@
 ﻿using GameOfChores.Data.Repositories;
 
-namespace GameOfChores.Data.UnitTests.DbContextRepositoryTests
+namespace GameOfChores.Data.UnitTests.Repositories.DbContext
 {
     public class FakeDbRepository : DbContextRepository
     {

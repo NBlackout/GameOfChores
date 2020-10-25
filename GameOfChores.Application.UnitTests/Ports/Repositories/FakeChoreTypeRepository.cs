@@ -23,5 +23,6 @@ namespace GameOfChores.Application.UnitTests.Ports.Repositories
         }
 
         public Task<bool> ExistsAsync(ChoreType choreType) => Task.FromResult(choresTypes.Any(c => c.Label == choreType.Label));
+        public Task<IEnumerable<ChoreType>> GetAsync() => Task.FromResult(choresTypes.AsEnumerable());
     }
 }
