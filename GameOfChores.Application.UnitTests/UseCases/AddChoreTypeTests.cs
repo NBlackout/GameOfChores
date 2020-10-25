@@ -23,7 +23,7 @@ namespace GameOfChores.Application.UnitTests.UseCases
         [Theory, ExtendedAutoData]
         public async Task AlreadyExistingChoreType_GivesError(ChoreType choreType)
         {
-            choreTypeRepository.Add(choreType);
+            await choreTypeRepository.AddAsync(choreType);
             var parameter = new AddChoreTypeParameter(choreType.Label);
 
             await Assert.ThrowsAsync<ChoreTypeAlreadyExistsException>(() => ActAsync(parameter));

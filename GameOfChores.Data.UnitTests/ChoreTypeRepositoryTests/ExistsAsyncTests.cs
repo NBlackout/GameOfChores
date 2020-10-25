@@ -1,23 +1,15 @@
 ﻿using System.Threading.Tasks;
 using FluentAssertions;
 using GameOfChores.Data.Entities;
+using GameOfChores.Data.Repositories;
 using GameOfChores.Domain;
 using GameOfChores.UnitTest.Tools.AutoFixture;
 using Xunit;
 
-namespace GameOfChores.Data.UnitTests.ChoreTypeRepository
+namespace GameOfChores.Data.UnitTests.ChoreTypeRepositoryTests
 {
-    public class ExistsAsyncTests
+    public class ExistsAsyncTests : InMemoryRepositoryTests<ChoreTypeRepository>
     {
-        private readonly GameOfChoresContext context;
-        private readonly Repositories.ChoreTypeRepository repository;
-
-        public ExistsAsyncTests()
-        {
-            context = InMemoryDbContextFactory.MakeDbContext();
-            repository = new Repositories.ChoreTypeRepository(context);
-        }
-
         [Theory, ExtendedAutoData]
         public async Task NotExistingChoreType_GivesFalse(ChoreType choreType)
         {
@@ -29,14 +21,15 @@ namespace GameOfChores.Data.UnitTests.ChoreTypeRepository
         [Theory, ExtendedAutoData]
         public async Task ExistingChoreType_GivesTrue(ChoreType choreType)
         {
+            GameOfChoresContext context = MakeDbContext();
             await context.ChoreTypes.AddAsync(new ChoreTypeEntity { Id = 1, Label = choreType.Label });
             await context.SaveChangesAsync();
 
-            bool exists = await repository.ExistsAsync(choreType);
+            bool exists = await Repository.ExistsAsync(choreType);
 
             exists.Should().BeTrue();
         }
 
-        private async Task<bool> ActAsync(ChoreType choreType) => await repository.ExistsAsync(choreType);
+        private async Task<bool> ActAsync(ChoreType choreType) => await Repository.ExistsAsync(choreType);
     }
 }

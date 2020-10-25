@@ -6,22 +6,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GameOfChores.Data.Repositories
 {
-    public class ChoreTypeRepository : IChoreTypeRepository
+    public class ChoreTypeRepository : DbContextRepository, IChoreTypeRepository
     {
-        private readonly GameOfChoresContext context;
-
         public ChoreTypeRepository(GameOfChoresContext context)
+            : base(context)
         {
-            this.context = context;
         }
 
-        public void Add(ChoreType choreType)
+        public async Task AddAsync(ChoreType choreType)
         {
             var choreTypeEntity = new ChoreTypeEntity { Label = choreType.Label };
 
-            context.ChoreTypes.Add(choreTypeEntity);
+            await Context.ChoreTypes.AddAsync(choreTypeEntity);
+            await Context.SaveChangesAsync();
         }
 
-        public Task<bool> ExistsAsync(ChoreType choreType) => context.ChoreTypes.AnyAsync(ct => ct.Label == choreType.Label);
+        public Task<bool> ExistsAsync(ChoreType choreType) => Context.ChoreTypes.AnyAsync(ct => ct.Label == choreType.Label);
     }
 }

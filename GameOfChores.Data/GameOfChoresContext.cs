@@ -8,7 +8,8 @@ namespace GameOfChores.Data
     {
         public DbSet<ChoreTypeEntity> ChoreTypes { get; set; } = null!;
 
-        public GameOfChoresContext([NotNull] DbContextOptions options) : base(options)
+        public GameOfChoresContext([NotNull] DbContextOptions options)
+            : base(options)
         {
         }
     }

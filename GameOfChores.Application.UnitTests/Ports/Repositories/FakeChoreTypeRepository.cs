@@ -15,7 +15,12 @@ namespace GameOfChores.Application.UnitTests.Ports.Repositories
             choresTypes = new List<ChoreType>();
         }
 
-        public void Add(ChoreType choreType) => choresTypes.Add(choreType);
+        public Task AddAsync(ChoreType choreType)
+        {
+            choresTypes.Add(choreType);
+
+            return Task.CompletedTask;
+        }
 
         public Task<bool> ExistsAsync(ChoreType choreType) => Task.FromResult(choresTypes.Any(c => c.Label == choreType.Label));
     }

@@ -22,7 +22,7 @@ namespace GameOfChores.Application.UseCases.AddChoreType
             if (exists)
                 throw new ChoreTypeAlreadyExistsException();
 
-            choreTypeRepository.Add(choreType);
+            await choreTypeRepository.AddAsync(choreType);
         }
     }
 }

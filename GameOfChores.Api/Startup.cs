@@ -1,5 +1,10 @@
+using GameOfChores.Application.Ports.Repositories;
+using GameOfChores.Application.UseCases.AddChoreType;
+using GameOfChores.Data;
+using GameOfChores.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -11,6 +16,10 @@ namespace GameOfChores.Api
         {
             services.AddControllers();
             services.AddSwaggerGen();
+
+            services.AddDbContext<GameOfChoresContext>(o => o.UseInMemoryDatabase("GameOfChores"));
+            services.AddScoped<IChoreTypeRepository, ChoreTypeRepository>();
+            services.AddScoped<IAddChoreType, AddChoreType>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
