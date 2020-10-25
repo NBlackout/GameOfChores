@@ -27,6 +27,15 @@ namespace GameOfChores.Data.UnitTests.DbContextRepositoryTests
             contextMock.Verify(m => m.Dispose(), Times.Once);
         }
 
+        [Fact]
+        public void MultipleCalls_ShouldDisposeOnlyOnce()
+        {
+            Act();
+            Act();
+
+            contextMock.Verify(m => m.Dispose(), Times.Once);
+        }
+
         private void Act() => repository.Dispose();
     }
 }
