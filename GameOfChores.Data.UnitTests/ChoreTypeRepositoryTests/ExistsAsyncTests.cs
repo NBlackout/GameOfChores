@@ -21,9 +21,11 @@ namespace GameOfChores.Data.UnitTests.ChoreTypeRepositoryTests
         [Theory, ExtendedAutoData]
         public async Task ExistingChoreType_GivesTrue(ChoreType choreType)
         {
-            GameOfChoresContext context = MakeDbContext();
-            await context.ChoreTypes.AddAsync(new ChoreTypeEntity { Id = 1, Label = choreType.Label });
-            await context.SaveChangesAsync();
+            await using (GameOfChoresContext context = MakeDbContext())
+            {
+                await context.ChoreTypes.AddAsync(new ChoreTypeEntity { Id = 1, Label = choreType.Label });
+                await context.SaveChangesAsync();
+            }
 
             bool exists = await Repository.ExistsAsync(choreType);
 

@@ -13,12 +13,13 @@ namespace GameOfChores.Data.UnitTests.ChoreTypeRepositoryTests
         [Theory, ExtendedAutoData]
         public async Task ExistingChoreType_GivesTrue(ChoreType choreType)
         {
-            Act(choreType);
+            await Act(choreType);
 
-            bool exists = await MakeDbContext().ChoreTypes.AnyAsync(ct => ct.Label == choreType.Label);
+            await using GameOfChoresContext context = MakeDbContext();
+            bool exists = await context.ChoreTypes.AnyAsync(ct => ct.Label == choreType.Label);
             exists.Should().BeTrue();
         }
 
-        private void Act(ChoreType choreType) => Repository.AddAsync(choreType);
+        private async Task Act(ChoreType choreType) => await Repository.AddAsync(choreType);
     }
 }
