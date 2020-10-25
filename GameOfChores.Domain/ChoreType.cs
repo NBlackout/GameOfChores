@@ -8,8 +8,6 @@ namespace GameOfChores.Domain
 
         public ChoreType(string label)
         {
-            if (label == null)
-                throw new ArgumentNullException(nameof(label));
             if (string.IsNullOrWhiteSpace(label))
                 throw new ArgumentException("Label should not be empty");
 

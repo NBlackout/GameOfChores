@@ -26,7 +26,7 @@ namespace GameOfChores.Application.UnitTests.UseCases
             choreTypeRepository.Add(choreType);
             var parameter = new AddChoreTypeParameter(choreType.Label);
 
-            await Assert.ThrowsAsync<ChoreTypeLabelAlreadyExistsException>(() => ActAsync(parameter));
+            await Assert.ThrowsAsync<ChoreTypeAlreadyExistsException>(() => ActAsync(parameter));
         }
 
         [Theory, ExtendedAutoData]
