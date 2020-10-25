@@ -13,7 +13,7 @@ namespace GameOfChores.Data.UnitTests
         {
             var databaseName = Guid.NewGuid().ToString();
             options = new DbContextOptionsBuilder<GameOfChoresContext>().UseInMemoryDatabase(databaseName).Options;
-            
+
             Repository = (T)Activator.CreateInstance(typeof(T), MakeDbContext())!;
         }
 

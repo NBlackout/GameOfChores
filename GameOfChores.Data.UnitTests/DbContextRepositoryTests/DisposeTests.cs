@@ -1,28 +1,32 @@
 ﻿using System;
-using FluentAssertions;
-using GameOfChores.Data.Repositories;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+using Moq;
 using Xunit;
 
 namespace GameOfChores.Data.UnitTests.DbContextRepositoryTests
 {
-    public class DisposeTests : InMemoryRepositoryTests<FakeDbRepository>
+    public class DisposeTests
     {
+        private readonly FakeDbRepository repository;
+        private readonly Mock<GameOfChoresContext> contextMock;
+
+        public DisposeTests()
+        {
+            var databaseName = Guid.NewGuid().ToString();
+            DbContextOptions<GameOfChoresContext> options = new DbContextOptionsBuilder<GameOfChoresContext>().UseInMemoryDatabase(databaseName).Options;
+
+            contextMock = new Mock<GameOfChoresContext>(options);
+            repository = new FakeDbRepository(contextMock.Object);
+        }
+
         [Fact]
-        public void EnsureDisposed()
+        public void ManagedResources_AreDisposed()
         {
-            Repository.Dispose();
+            Act();
 
-            Func<DatabaseFacade> getContextDatabase = () => Repository.Context.Database;
-            getContextDatabase.Should().ThrowExactly<ObjectDisposedException>();
+            contextMock.Verify(m => m.Dispose(), Times.Once);
         }
-    }
 
-    public class FakeDbRepository : DbContextRepository
-    {
-        public FakeDbRepository(GameOfChoresContext context)
-            : base(context)
-        {
-        }
+        private void Act() => repository.Dispose();
     }
 }
