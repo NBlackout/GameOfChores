@@ -1,20 +1,19 @@
 ﻿using System;
-using GameOfChores.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameOfChores.Data.UnitTests.Repositories
 {
-    public abstract class InMemoryRepositoryTests<T> where T : DbContextRepository
+    public abstract class InMemoryRepositoryTests
     {
         private readonly DbContextOptions<GameOfChoresContext> options;
-        protected readonly T Repository;
+
+        protected GameOfChoresContext Context { get; }
 
         protected InMemoryRepositoryTests()
         {
             var databaseName = Guid.NewGuid().ToString();
             options = new DbContextOptionsBuilder<GameOfChoresContext>().UseInMemoryDatabase(databaseName).Options;
-
-            Repository = (T)Activator.CreateInstance(typeof(T), MakeDbContext())!;
+            Context = new GameOfChoresContext(options);
         }
 
         protected GameOfChoresContext MakeDbContext() => new GameOfChoresContext(options);

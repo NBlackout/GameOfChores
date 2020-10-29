@@ -7,7 +7,7 @@ using GameOfChores.Domain;
 using GameOfChores.UnitTest.Tools.AutoFixture;
 using Xunit;
 
-namespace GameOfChores.Application.UnitTests.UseCases
+namespace GameOfChores.Application.UnitTests.UseCases.ChoreTypes
 {
     public class AddChoreTypeTests
     {
@@ -25,8 +25,10 @@ namespace GameOfChores.Application.UnitTests.UseCases
         {
             await choreTypeRepository.AddAsync(choreType);
             var parameter = new AddChoreTypeParameter(choreType.Label);
+            var upperCaseParameter = new AddChoreTypeParameter(choreType.Label.ToUpper());
 
             await Assert.ThrowsAsync<ChoreTypeAlreadyExistsException>(() => ActAsync(parameter));
+            await Assert.ThrowsAsync<ChoreTypeAlreadyExistsException>(() => ActAsync(upperCaseParameter));
         }
 
         [Theory, ExtendedAutoData]

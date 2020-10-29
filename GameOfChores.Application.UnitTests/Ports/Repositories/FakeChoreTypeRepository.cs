@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GameOfChores.Application.Ports.Repositories;
@@ -8,21 +9,21 @@ namespace GameOfChores.Application.UnitTests.Ports.Repositories
 {
     public class FakeChoreTypeRepository : IChoreTypeRepository
     {
-        private readonly List<ChoreType> choresTypes;
+        private readonly List<ChoreType> choreTypes;
 
         public FakeChoreTypeRepository()
         {
-            choresTypes = new List<ChoreType>();
+            choreTypes = new List<ChoreType>();
         }
 
         public Task AddAsync(ChoreType choreType)
         {
-            choresTypes.Add(choreType);
+            choreTypes.Add(choreType);
 
             return Task.CompletedTask;
         }
 
-        public Task<bool> ExistsAsync(ChoreType choreType) => Task.FromResult(choresTypes.Any(c => c.Label == choreType.Label));
-        public Task<IEnumerable<ChoreType>> GetAsync() => Task.FromResult(choresTypes.AsEnumerable());
+        public Task<bool> ExistsAsync(ChoreType choreType) => Task.FromResult(choreTypes.Any(c => string.Equals(c.Label, choreType.Label, StringComparison.InvariantCultureIgnoreCase)));
+        public Task<IEnumerable<ChoreType>> GetAsync() => Task.FromResult(choreTypes.AsEnumerable());
     }
 }

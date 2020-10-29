@@ -3,7 +3,7 @@
     <IsPackable>false</IsPackable>
     <Nullable>enable</Nullable>
     <ProjectGuid>2AB2E9EE-BBFB-4C61-ACB2-CBADF707B033</ProjectGuid>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>

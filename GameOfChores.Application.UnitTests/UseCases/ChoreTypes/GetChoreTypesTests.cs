@@ -9,7 +9,7 @@ using GameOfChores.Domain;
 using GameOfChores.UnitTest.Tools.AutoFixture;
 using Xunit;
 
-namespace GameOfChores.Application.UnitTests.UseCases
+namespace GameOfChores.Application.UnitTests.UseCases.ChoreTypes
 {
     public class GetChoreTypesTests
     {

@@ -8,10 +8,17 @@ using Xunit;
 
 namespace GameOfChores.Data.UnitTests.Repositories.ChoreTypes
 {
-    public class AddTests : InMemoryRepositoryTests<ChoreTypeRepository>
+    public class AddAsyncTests : InMemoryRepositoryTests
     {
+        private readonly ChoreTypeRepository repository;
+
+        public AddAsyncTests()
+        {
+            repository = new ChoreTypeRepository(Context);
+        }
+
         [Theory, ExtendedAutoData]
-        public async Task ExistingChoreType_GivesTrue(ChoreType choreType)
+        public async Task NotExistingChoreType_GivesTrue(ChoreType choreType)
         {
             await Act(choreType);
 
@@ -20,6 +27,6 @@ namespace GameOfChores.Data.UnitTests.Repositories.ChoreTypes
             exists.Should().BeTrue();
         }
 
-        private async Task Act(ChoreType choreType) => await Repository.AddAsync(choreType);
+        private async Task Act(ChoreType choreType) => await repository.AddAsync(choreType);
     }
 }

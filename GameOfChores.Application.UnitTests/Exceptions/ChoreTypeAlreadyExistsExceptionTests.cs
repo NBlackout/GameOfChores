@@ -1,6 +1,5 @@
 ﻿using System;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 using FluentAssertions;
 using GameOfChores.Application.Exceptions;
 using Xunit;
@@ -12,22 +11,14 @@ namespace GameOfChores.Application.UnitTests.Exceptions
         [Fact]
         public void Toto()
         {
-            Exception exception = Act();
+            var exception = new ChoreTypeAlreadyExistsException();
+            string json = JsonSerializer.Serialize(exception);
 
-            exception = SerializeAndDeserialize(exception);
-            exception.Should().BeOfType<ChoreTypeAlreadyExistsException>();
+            Func<ChoreTypeAlreadyExistsException> act = () => Act(json);
 
-            static ChoreTypeAlreadyExistsException SerializeAndDeserialize(Exception ex)
-            {
-                BinaryFormatter bf = new BinaryFormatter();
-                using MemoryStream ms = new MemoryStream();
-                bf.Serialize(ms, ex);
-                ms.Seek(0, 0);
-
-                return (ChoreTypeAlreadyExistsException)bf.Deserialize(ms);
-            }
+            act.Should().NotThrow();
         }
 
-        private static ChoreTypeAlreadyExistsException Act() => new ChoreTypeAlreadyExistsException();
+        private static ChoreTypeAlreadyExistsException Act(string json) => JsonSerializer.Deserialize<ChoreTypeAlreadyExistsException>(json)!;
     }
 }
