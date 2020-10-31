@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoFixture;
@@ -29,7 +30,7 @@ namespace GameOfChores.Api.UnitTests.Controllers.ChoreTypes
         [Theory, AutoData]
         public async Task Get_ExecutesUseCaseAndGivesResults(Generator<string> stringGenerator)
         {
-            IEnumerable<GetChoreTypesResult> expectedResults = stringGenerator.Take(5).Select(l => new GetChoreTypesResult(l));
+            IEnumerable<GetChoreTypesResult> expectedResults = stringGenerator.Take(5).Select(l => new GetChoreTypesResult(Guid.NewGuid(), l));
             getChoreTypesMock.Setup(m => m.ExecuteAsync()).ReturnsAsync(expectedResults);
 
             ActionResult response = await ActAsync();

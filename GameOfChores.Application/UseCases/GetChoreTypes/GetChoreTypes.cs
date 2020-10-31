@@ -19,7 +19,7 @@ namespace GameOfChores.Application.UseCases.GetChoreTypes
         {
             IEnumerable<ChoreType> choreTypes = await choreTypeRepository.GetAsync();
 
-            return choreTypes.Select(ct => new GetChoreTypesResult(ct.Label));
+            return choreTypes.Select(ct => new GetChoreTypesResult(ct.Guid, ct.Label));
         }
     }
 }

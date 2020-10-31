@@ -1,11 +1,15 @@
-﻿namespace GameOfChores.Application.UseCases.GetChoreTypes
+﻿using System;
+
+namespace GameOfChores.Application.UseCases.GetChoreTypes
 {
     public class GetChoreTypesResult
     {
-        public string Label { get; set; }
+        public Guid Guid { get; }
+        public string Label { get; }
 
-        public GetChoreTypesResult(string label)
+        public GetChoreTypesResult(Guid guid, string label)
         {
+            Guid = guid;
             Label = label;
         }
     }

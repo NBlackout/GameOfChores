@@ -39,7 +39,7 @@ namespace GameOfChores.Application.UnitTests.UseCases.ChoreTypes
 
             IEnumerable<GetChoreTypesResult> results = await ActAsync();
 
-            IEnumerable<GetChoreTypesResult> expected = choreTypes.Select(ct => new GetChoreTypesResult(ct.Label));
+            IEnumerable<GetChoreTypesResult> expected = choreTypes.Select(ct => new GetChoreTypesResult(ct.Guid, ct.Label));
             results.Should().BeEquivalentTo(expected);
         }
 
