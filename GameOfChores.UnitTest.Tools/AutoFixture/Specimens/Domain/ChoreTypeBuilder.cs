@@ -1,4 +1,5 @@
-﻿using AutoFixture;
+﻿using System;
+using AutoFixture;
 using AutoFixture.Kernel;
 using GameOfChores.Domain;
 
@@ -8,9 +9,10 @@ namespace GameOfChores.UnitTest.Tools.AutoFixture.Specimens.Domain
     {
         protected override ChoreType CreateSpecimen(object request, ISpecimenContext context)
         {
+            var guid = Guid.NewGuid();
             var label = context.Create<string>();
 
-            return new ChoreType(label);
+            return new ChoreType(guid, label);
         }
     }
 }

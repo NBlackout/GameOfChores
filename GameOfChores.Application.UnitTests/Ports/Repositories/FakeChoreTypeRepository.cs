@@ -23,7 +23,7 @@ namespace GameOfChores.Application.UnitTests.Ports.Repositories
             return Task.CompletedTask;
         }
 
-        public Task<bool> ExistsAsync(ChoreType choreType) => Task.FromResult(choreTypes.Any(c => string.Equals(c.Label, choreType.Label, StringComparison.InvariantCultureIgnoreCase)));
+        public Task<bool> ExistsAsync(ChoreType choreType) => Task.FromResult(choreTypes.Any(c => c.Guid == choreType.Guid || c.Label == choreType.Label));
         public Task<IEnumerable<ChoreType>> GetAsync() => Task.FromResult(choreTypes.AsEnumerable());
     }
 }

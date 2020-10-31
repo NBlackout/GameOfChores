@@ -21,14 +21,12 @@ namespace GameOfChores.Application.UnitTests.UseCases.ChoreTypes
         }
 
         [Theory, ExtendedAutoData]
-        public async Task AlreadyExistingChoreType_GivesError(ChoreType choreType)
+        public async Task AlreadyExistingLabel_GivesError(ChoreType choreType)
         {
             await choreTypeRepository.AddAsync(choreType);
             var parameter = new AddChoreTypeParameter(choreType.Label);
-            var upperCaseParameter = new AddChoreTypeParameter(choreType.Label.ToUpper());
 
             await Assert.ThrowsAsync<ChoreTypeAlreadyExistsException>(() => ActAsync(parameter));
-            await Assert.ThrowsAsync<ChoreTypeAlreadyExistsException>(() => ActAsync(upperCaseParameter));
         }
 
         [Theory, ExtendedAutoData]
@@ -38,7 +36,7 @@ namespace GameOfChores.Application.UnitTests.UseCases.ChoreTypes
 
             await ActAsync(parameter);
 
-            bool exists = await choreTypeRepository.ExistsAsync(new ChoreType(label));
+            bool exists = await choreTypeRepository.ExistsAsync(new ChoreType(parameter.Guid, label));
             exists.Should().BeTrue();
         }
 

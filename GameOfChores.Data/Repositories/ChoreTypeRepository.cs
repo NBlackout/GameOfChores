@@ -17,14 +17,20 @@ namespace GameOfChores.Data.Repositories
 
         public async Task AddAsync(ChoreType choreType)
         {
-            var choreTypeEntity = new ChoreTypeEntity { Label = choreType.Label };
+            var choreTypeEntity = new ChoreTypeEntity { Guid = choreType.Guid, Label = choreType.Label };
 
             await Context.ChoreTypes.AddAsync(choreTypeEntity);
             await Context.SaveChangesAsync();
         }
 
-        public Task<bool> ExistsAsync(ChoreType choreType) => Context.ChoreTypes.AnyAsync(ct => ct.Label == choreType.Label);
+        public Task<bool> ExistsAsync(ChoreType choreType)
+        {
+            return Context.ChoreTypes.AnyAsync(ct =>
+                ct.Guid.ToString().ToUpperInvariant() == choreType.Guid.ToString().ToUpperInvariant()
+                || ct.Label.ToUpperInvariant() == choreType.Label.ToUpperInvariant()
+            );
+        }
 
-        public async Task<IEnumerable<ChoreType>> GetAsync() => await Context.ChoreTypes.Select(ct => new ChoreType(ct.Label)).ToListAsync();
+        public async Task<IEnumerable<ChoreType>> GetAsync() => await Context.ChoreTypes.Select(ct => new ChoreType(ct.Guid, ct.Label)).ToListAsync();
     }
 }

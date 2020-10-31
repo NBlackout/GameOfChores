@@ -16,7 +16,7 @@ namespace GameOfChores.Application.UseCases.AddChoreType
 
         public async Task ExecuteAsync(AddChoreTypeParameter parameter)
         {
-            var choreType = new ChoreType(parameter.Label);
+            var choreType = new ChoreType(parameter.Guid, parameter.Label);
 
             bool exists = await choreTypeRepository.ExistsAsync(choreType);
             if (exists)

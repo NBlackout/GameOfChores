@@ -7,24 +7,33 @@ namespace GameOfChores.Domain.UnitTests
 {
     public class ChoreTypeTests
     {
+        [Fact]
+        public void InvalidGuid_GivesError()
+        {
+            Action act = () => Act(default, string.Empty);
+
+            act.Should().Throw<ArgumentException>().WithMessage("Chore type guid must not be empty");
+        }
+
         [Theory]
         [InlineData("")]
         [InlineData("\t ")]
         public void InvalidLabel_GivesError(string label)
         {
-            Action act = () => Act(label);
+            Action act = () => Act(Guid.NewGuid(), label);
 
-            act.Should().ThrowExactly<ArgumentException>().WithMessage("Label should not be empty");
+            act.Should().Throw<ArgumentException>().WithMessage("Chore type label must not be empty");
         }
 
         [Theory, AutoData]
-        public void ValidLabel_SetsBackingMember(string label)
+        public void ValidLabel_SetsBackingMember(Guid guid, string label)
         {
-            ChoreType chore = Act(label);
+            ChoreType choreType = Act(guid, label);
 
-            chore.Label.Should().Be(label);
+            choreType.Guid.Should().Be(guid);
+            choreType.Label.Should().Be(label);
         }
 
-        private static ChoreType Act(string label) => new ChoreType(label);
+        private static ChoreType Act(Guid guid, string label) => new ChoreType(guid, label);
     }
 }

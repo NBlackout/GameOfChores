@@ -26,13 +26,18 @@ namespace GameOfChores.Api.UnitTests.Controllers.ChoreTypes
         [Theory, AutoData]
         public async Task ValidRequestParameter_ExecutesUseCaseAndGivesSuccess(string label)
         {
+            AddChoreTypeParameter parameter = null;
+            addChoreTypeMock.Setup(m => m.ExecuteAsync(It.IsAny<AddChoreTypeParameter>()))
+                .Callback<AddChoreTypeParameter>(p => parameter = p);
+
             var request = new AddChoreTypeRequest { Label = label };
+            ActionResult result = await ActAsync(request);
 
-            ActionResult response = await ActAsync(request);
+            var response = new AddChoreTypeResponse(parameter.Guid, parameter.Label);
+            var expected = new CreatedResult($"api/ChoreTypes/{parameter.Guid}", response);
+            parameter.Label.Should().Be(label);
+            result.Should().BeEquivalentTo(expected);
 
-            response.Should().BeOfType<OkResult>();
-            addChoreTypeMock.Verify(m => m.ExecuteAsync(It.IsAny<AddChoreTypeParameter>()), Times.Once);
-            addChoreTypeMock.Verify(m => m.ExecuteAsync(It.Is<AddChoreTypeParameter>(p => p.Label == label)), Times.Once);
         }
 
         private async Task<ActionResult> ActAsync(AddChoreTypeRequest request) => await controller.AddChoreTypeAsync(request);

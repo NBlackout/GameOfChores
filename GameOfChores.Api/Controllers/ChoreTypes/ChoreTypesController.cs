@@ -33,7 +33,8 @@ namespace GameOfChores.Api.Controllers.ChoreTypes
             var parameter = new AddChoreTypeParameter(request.Label);
             await addChoreType.ExecuteAsync(parameter);
 
-            return Ok();
+            var addChoreTypeResponse = new AddChoreTypeResponse(parameter.Guid, parameter.Label);
+            return Created($"api/ChoreTypes/{parameter.Guid}", addChoreTypeResponse);
         }
     }
 }
